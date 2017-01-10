@@ -41,6 +41,7 @@ fabric.properties
 .nfs*
 ### Vagrant template
 .vagrant/
+chef
 ### SublimeText template
 # cache files for sublime text
 *.tmlanguage.cache
