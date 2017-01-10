@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: yes
+  become_method: root
+  vars_files:
+    - ../vagrant_config.yml
+  roles:
+    - server
+    - vagrant_local
+    - imagemagick
+    - php56
+    - composer
+    - mysql
+    - oh-my-zsh
+    - app

@@ -1,0 +1,10 @@
+---
+- name: Install Composer
+  become: yes
+  become_method: sudo
+  shell: curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+
+- name: Install Prestissimo
+  become: yes
+  become_method: sudo
+  shell: composer global require "hirak/prestissimo:^0.3"

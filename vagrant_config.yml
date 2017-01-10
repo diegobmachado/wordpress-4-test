@@ -1,0 +1,84 @@
+---
+configs: &configs
+  vm_box: &configs_vm_box
+    'ubuntu/trusty64'                           # Nome da imagem usada na VM
+  vm_name: &configs_vm_name
+    'ag2nuruntestwp'                            # Não pode conter espaços ou caracteres especiais
+  vm_memory: &configs_vm_memory
+    1024                                        # Quantidade de memória recomendada para a VM: >1024
+  vm_cpus: &configs_vm_cpus
+    1                                           # Quantidade de CPUs
+  vm_ip: &configs_vm_ip
+    '56.56.56.56'                               #ip da VM
+  vm_url: &configs_vm_url
+    'wp-test.dev'                               #url
+  vm_path: &configs_vm_path
+    '/var'                                      #default path
+  project_root: &configs_project_root
+    '/var/www'                                  #default path site
+
+php:
+  ppa: "ppa:ondrej/php"
+  version: "php5.6"
+  packages:
+    - php5.6-common
+    - php5.6-cli
+    - php5.6-intl
+    - php5.6-curl
+    - php5.6-mysql
+    - php5.6-readline
+    - php5.6-mcrypt
+    - php5.6-json
+    - php5.6-mbstring
+    - php5.6-xml
+    - php5.6-zip
+    - php5.6-gd
+    - php5.6-fpm
+    - libapache2-mod-php5.6 #caso prefira instalar Apache2
+    - php5.6-imagick
+  timezone: America/Sao_Paulo
+  upload_max_filesize: "100M"
+  post_max_size: "100M"
+  memory_limit: "512M"
+
+apache2:
+  docroot: *configs_project_root
+  servername: *configs_vm_url
+
+mysql:
+  root_password: '123'
+  database: testwp
+  user: testwp
+  password: '123'
+  dump: 'sql/test_wp.sql'
+
+ohmyzsh:
+  theme: 'steeef'
+
+nodejs:
+  version: '0.12'
+
+npm:
+  global_packages:
+    - npm
+    - gulp
+
+vagrant_local:
+  vm:
+    base_box: *configs_vm_box
+    hostname: *configs_vm_name
+    ip: *configs_vm_ip
+    memory: *configs_vm_memory
+    sharedfolder: ./
+    useVagrantCloud: '1'
+    syncType: '0'
+
+server:
+  packages:
+    - vim
+    - git
+    - htop
+    - unzip
+    - curl
+  timezone: America/Sao_Paulo
+  locale: pt_BR.UTF-8
