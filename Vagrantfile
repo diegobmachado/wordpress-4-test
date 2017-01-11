@@ -18,21 +18,21 @@ end
 Vagrant.configure("2") do |config|
 
     # Disable the default hostmanager behavior
-        config.hostmanager.enabled = false
-        ### ... possible provisioner config before hostmanager ...
-        ### hostmanager provisioner
-        config.vm.provision :hostmanager
+    config.hostmanager.enabled = false
+    ### ... possible provisioner config before hostmanager ...
+    ### hostmanager provisioner
+    config.vm.provision :hostmanager
 
-        ### ... possible provisioning config after hostmanager ...
-        config.hostmanager.enabled = true
-        config.hostmanager.manage_host = true
-        config.hostmanager.manage_guest = true
-        config.hostmanager.ignore_private_ip = false
-        config.hostmanager.include_offline = true
-        config.vm.define vagrant_config['vm_name'] do |node|
-          node.vm.hostname = vagrant_config['vm_url']
-          node.vm.network :private_network, ip: vagrant_config['vm_ip']
-        end
+    ### ... possible provisioning config after hostmanager ...
+    config.hostmanager.enabled = true
+    config.hostmanager.manage_host = true
+    config.hostmanager.manage_guest = true
+    config.hostmanager.ignore_private_ip = false
+    config.hostmanager.include_offline = true
+    config.vm.define vagrant_config['vm_name'] do |node|
+      node.vm.hostname = vagrant_config['vm_url']
+      node.vm.network :private_network, ip: vagrant_config['vm_ip']
+    end
 
     config.vm.provider :virtualbox do |v|
         v.name = vagrant_config['vm_name']

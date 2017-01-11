@@ -14,11 +14,5 @@
   copy: src={{ configs.vm_path }}/wp-config.php.env dest={{ apache2.docroot }}/wp-config.php owner=www-data group=www-data mode=0644
   when: wp_config_file.stat.exists == False
 
-- name: Copia arquivo HTACCESS
-  become: yes
-  become_method: root
-  copy: src={{ apache2.docroot }}/PROD.htaccess dest={{ apache2.docroot }}/.htaccess owner=www-data group=www-data mode=0644
-  when: htaccess_file.stat.exists == False
-
 - name: Clone Git SearchReplace
   git: repo=https://github.com/interconnectit/Search-Replace-DB.git dest=/var/www/Search-Replace-DB

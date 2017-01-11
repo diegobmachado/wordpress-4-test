@@ -23,25 +23,9 @@
 - name: mysql | Create databases
   mysql_db: name={{ mysql.database }} state=present login_user=root login_password={{ mysql.root_password }}
 
-- name: mysql | Create databases 2
-  mysql_db: name={{ mysql.database2 }} state=present login_user=root login_password={{ mysql.root_password }}
-  when: mysql.database2
-
-- name: mysql | Create databases 3
-  mysql_db: name={{ mysql.database3 }} state=present login_user=root login_password={{ mysql.root_password }}
-  when: mysql.database3
-
 - name: mysql | Import dump
   mysql_db: name={{ mysql.database }} state=import login_user=root login_password={{ mysql.root_password }} target=/vagrant/{{ mysql.dump }}
   when: mysql.dump
-
-- name: mysql | Import dump 2
-  mysql_db: name={{ mysql.database2 }} state=import login_user=root login_password={{ mysql.root_password }} target=/vagrant/{{ mysql.dump2 }}
-  when: mysql.dump2
-
-- name: mysql | Import dump 3
-  mysql_db: name={{ mysql.database3 }} state=import login_user=root login_password={{ mysql.root_password }} target=/vagrant/{{ mysql.dump3 }}
-  when: mysql.dump3
 
 - name: mysql | Ensure anonymous users are not in the database
   mysql_user: name='' host={{ item }} state=absent login_user=root login_password={{ mysql.root_password }}
