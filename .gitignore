@@ -42,6 +42,7 @@ fabric.properties
 ### Vagrant template
 .vagrant/
 chef
+lib
 ### SublimeText template
 # cache files for sublime text
 *.tmlanguage.cache
