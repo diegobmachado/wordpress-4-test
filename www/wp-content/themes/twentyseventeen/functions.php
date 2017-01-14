@@ -420,6 +420,26 @@ function twentyseventeen_scripts() {
 add_action( 'wp_enqueue_scripts', 'twentyseventeen_scripts' );
 
 /**
+ * Post Type Festas
+ */
+function set_post_type_festas() {
+	register_post_type( 'festas',
+	// CPT Options
+		array(
+			'labels' => array(
+				'name' => __( 'Festas' ),
+				'singular_name' => __( 'Festa' )
+			),
+			'public' => true,
+			'has_archive' => true,
+			'rewrite' => array('slug' => 'festas'),
+			'supports' => array('title', 'editor', 'thumbnail', 'custom-fields')
+		)
+	);
+}
+add_action( 'init', 'set_post_type_festas' );
+
+/**
  * Add custom image sizes attribute to enhance responsive image functionality
  * for content images.
  *
